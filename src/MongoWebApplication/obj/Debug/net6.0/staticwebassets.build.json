@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "mqemQwVjzknRJ7NCXNkSksvJxqIfDIv7/KMQr1R6R44=",
+  "Source": "MongoCSFLEWebApplication",
+  "BasePath": "_content/MongoCSFLEWebApplication",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
