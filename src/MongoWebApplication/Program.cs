@@ -3,6 +3,7 @@
 ///To test Mongo DB client side field level encryption (CSFLE)
 ///With docker (Linux X64)
 
+using MongoCSFLEWebApplication.Service;
 using MongoWebApplication.Models;
 using MongoWebApplication.Service;
 
@@ -15,15 +16,23 @@ builder.Services.Configure<BookStoreDatabaseSettings>(
 builder.Services.Configure<MedicalRecordsStoreDatabaseSettings>(
     builder.Configuration.GetSection("MedicalRecordsDatabase"));
 
+
 builder.Services.AddControllers().AddJsonOptions(
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<BooksService>();
-builder.Services.AddSingleton<PatientsService>();
+//builder.Services.AddSingleton<PatientsService>();
+
+builder.Services.AddSingleton<SetupQueryableService>(); 
+
+
+builder.Services.AddSingleton<PatientsQuerableService>();
 
 var app = builder.Build();
+
+Console.WriteLine("Hello");
 
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())

@@ -16,17 +16,17 @@ public class SecurePatientModel
 
     [BsonElement("ssn")]
     [JsonPropertyName("ssn")]
-    //[BsonRepresentation(BsonType.Binary)]
+    [BsonRepresentation(BsonType.Binary)]
     public object SSN { get; set; } = null!;
     
     [BsonElement("bloodType")]
     [JsonPropertyName("bloodType")]
-   // [BsonRepresentation(BsonType.Binary)]
+    [BsonRepresentation(BsonType.Binary)]
     public object BloodType { get; set; } = null!;
 
     [BsonElement("medicalRecords")]
     [JsonPropertyName("medicalRecords")]
-    //[BsonRepresentation(BsonType.Binary)]
+    [BsonRepresentation(BsonType.Binary)]
     public object MedicalRecords { get; set; } = null!;
 
     [BsonElement("insurance")]

@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+
+# Install the required library
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    libdl.so.2 \
+    && rm -rf /var/lib/apt/lists/*
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["MongoWebApplication/MongoCSFLEWebApplication.csproj", "MongoWebApplication/"]
+RUN dotnet restore "MongoWebApplication/MongoCSFLEWebApplication.csproj"
+COPY . .
+WORKDIR "/src/MongoWebApplication"
+RUN dotnet build "MongoCSFLEWebApplication.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "MongoCSFLEWebApplication.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+COPY ["C:\\Users\\0B9494649\\Downloads\\mongo_crypt_shared_v1-windows-x86_64-enterprise-6.0.6\\bin\\mongo_crypt_v1.dll", "/app/mongo_crypt_v1.dll"]  # Copy the shared library to the container
+RUN apt-get update && apt-get install -y libdl2  # Install libdl2 package
+
+ENTRYPOINT ["dotnet", "MongoCSFLEWebApplication.dll"]

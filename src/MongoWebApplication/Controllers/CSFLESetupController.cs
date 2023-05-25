@@ -16,17 +16,17 @@ public class CSFLESetupController : ControllerBase
         _logger = logger;
     }
    
-   ///<summary>
-   ///  Use this method to setup CSFLE data encryption key
-   ///  Warning: Using this controller would wipe out existing encypted collection and keys
-   ///</summary>
+  
+   // Use this method to setup CSFLE data encryption key
+   //  Warning: Using this controller would wipe out existing encypted collection and keys
+  
 
     [HttpPost]
     public async Task<IActionResult> Post(bool areYouSure)
     {
         if(areYouSure)
             await _patientsService.MakeKeyBasicCSFLE();
-        return NoContent();;
+        return NoContent();
     }
     
 }
