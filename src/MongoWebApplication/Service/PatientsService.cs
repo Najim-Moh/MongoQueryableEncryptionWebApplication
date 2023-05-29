@@ -56,7 +56,7 @@ public class PatientsService
         // start-kmsproviders
         var kmsProviders = new Dictionary<string, IReadOnlyDictionary<string, object>>();
         var provider = "local";
-        var localMasterKeyBase64Read = "umKvsBgk5vfsQY2qxgAeJY2y/B2CwTK63TdunF2Gv1XjVmjglid8A6JXjblX+UaW3WL59+an5yUuxatEgjJqKmEC6XUciuDdc5dG7k305WkhL7rXvKXzJSRr6J+kTGib";
+        var localMasterKeyBase64Read = _medicalRecordsDatabaseSettings.Value.LocalMasterKeyBase64;
         var localMasterKeyBytes = Convert.FromBase64String(localMasterKeyBase64Read);
         var localOptions = new Dictionary<string, object>
             {
@@ -100,8 +100,8 @@ public class PatientsService
         var clientEncryption = new ClientEncryption(clientEncryptionOptions);
         var dataKeyOptions = new DataKeyOptions();
         List<string> keyNames = new List<string>();
-        keyNames.Add("demo-data-key");
-        var dataKeyId = clientEncryption.CreateDataKey(provider, dataKeyOptions.With(keyNames), CancellationToken.None);
+        keyNames.Add(_medicalRecordsDatabaseSettings.Value.DataEncryptionKeyAltName);
+        var dataKeyId = await clientEncryption.CreateDataKeyAsync(provider, dataKeyOptions.With(keyNames), CancellationToken.None);
         var dataKeyIdBase64 = Convert.ToBase64String(GuidConverter.ToBytes(dataKeyId, GuidRepresentation.Standard));
         Console.WriteLine($"DataKeyId [base64]: {dataKeyIdBase64}");
         // end-create-dek

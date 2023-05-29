@@ -12,5 +12,7 @@ public class MedicalRecordsStoreDatabaseSettings
 
     public string KeyVaultCollectionName { get; set; } = null!;
 
+    public string DataEncryptionKeyAltName { get; set; } = null!;
+
     public string LocalMasterKeyBase64 { get; set; } = null!;
 }

@@ -9,6 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< Updated upstream
+=======
+    <Compile Remove="Mongo_Crypt_Linux\**" />
+    <Compile Remove="mongo_crypt_shared_v1-windows-x86_64-enterprise-6.0.6\**" />
+    <Content Remove="Mongo_Crypt_Linux\**" />
+    <Content Remove="mongo_crypt_shared_v1-windows-x86_64-enterprise-6.0.6\**" />
+    <EmbeddedResource Remove="Mongo_Crypt_Linux\**" />
+    <EmbeddedResource Remove="mongo_crypt_shared_v1-windows-x86_64-enterprise-6.0.6\**" />
+    <None Remove="Mongo_Crypt_Linux\**" />
+    <None Remove="mongo_crypt_shared_v1-windows-x86_64-enterprise-6.0.6\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Credentials.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+>>>>>>> Stashed changes
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
